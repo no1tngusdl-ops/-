@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONCE, ONE'S BY JOSUN HOTEL - 런칭 홍보 전략 웹페이지</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Playfair Display & Noto Sans KR) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emerald: {
+                            950: '#041812',
+                            900: '#082a21',
+                            800: '#0d3a2e',
+                            700: '#145142',
+                        },
+                        gold: {
+                            100: '#fbf4dd',
+                            300: '#e6ca73',
+                            400: '#d4af37',
+                            500: '#aa8822',
+                            600: '#866914'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Noto Sans KR', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #041812;
+            color: #e2e8f0;
+            font-family: 'Noto Sans KR', sans-serif;
+            overflow-x: hidden;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF0BD 0%, #D4AF37 50%, #997A15 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border {
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+        .gold-glow {
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
+        }
+        .glass-card {
+            background: rgba(13, 58, 46, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .glass-card:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #041812;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0d3a2e;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4af37;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-gold-400 selection:text-emerald-950">
+
+    <!-- Top Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-card bg-opacity-90 border-b border-gold-400/20 py-4 px-6 md:px-12 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Home Link & Brand Title -->
+            <div class="flex items-center space-x-6">
+                <a href="../index.html" class="flex items-center space-x-2 text-gold-400 hover:text-white transition-colors duration-200 bg-emerald-900/80 hover:bg-gold-400/20 px-3 py-1.5 rounded-full border border-gold-400/30 text-sm font-medium">
+                    <i class="fa-solid fa-house"></i>
+                    <span>홈으로</span>
+                </a>
+                <div class="h-4 w-px bg-gold-400/30 hidden sm:block"></div>
+                <div class="flex flex-col">
+                    <span class="font-serif tracking-widest text-xs text-gold-300 uppercase">JOSUN HOTEL & RESORTS</span>
+                    <span class="font-serif text-lg font-bold tracking-wider text-white">ONCE, ONE'S</span>
+                </div>
+            </div>
+
+            <!-- Nav Links -->
+            <div class="hidden md:flex items-center space-x-8 text-sm tracking-wide">
+                <a href="#summary" class="hover:text-gold-400 transition">개요</a>
+                <a href="#dual-track" class="hover:text-gold-400 transition">듀얼 트랙</a>
+                <a href="#cardnews" class="hover:text-gold-400 transition">카드뉴스</a>
+                <a href="#poster" class="hover:text-gold-400 transition">무드보드 포스터</a>
+                <a href="#shortform" class="hover:text-gold-400 transition">숏폼 영상</a>
+                <a href="#strategy" class="hover:text-gold-400 transition">실행 전략 & KPI</a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-gold-400 text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 pt-4 border-t border-gold-400/20 flex flex-col space-y-3 px-2 text-sm">
+            <a href="#summary" class="hover:text-gold-400 py-1">개요</a>
+            <a href="#dual-track" class="hover:text-gold-400 py-1">듀얼 트랙</a>
+            <a href="#cardnews" class="hover:text-gold-400 py-1">카드뉴스</a>
+            <a href="#poster" class="hover:text-gold-400 py-1">무드보드 포스터</a>
+            <a href="#shortform" class="hover:text-gold-400 py-1">숏폼 영상</a>
+            <a href="#strategy" class="hover:text-gold-400 py-1">실행 전략 & KPI</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-6 overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-800/40 via-emerald-950 to-emerald-950 z-0"></div>
+        
+        <!-- Background Ambient Light -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gold-400/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-5xl mx-auto text-center space-y-8">
+            <div class="inline-block px-4 py-1.5 rounded-full border border-gold-400/40 bg-emerald-900/60 backdrop-blur-md">
+                <span class="text-xs font-semibold tracking-widest text-gold-300 uppercase">PR Strategy & Campaign Proposal</span>
+            </div>
+            
+            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white leading-tight">
+                "혼자인데, 이렇게 <br class="hidden sm:inline"/>
+                <span class="gold-gradient-text">대접받아도 되나요?</span>"
+            </h1>
+
+            <p class="text-lg sm:text-xl text-emerald-100/80 max-w-2xl mx-auto font-light leading-relaxed">
+                한 번 와도, 혼자 와도 우리 사람 — <br class="sm:hidden"/>
+                혼자이기 때문에 더 온전하게 누리는 5성급 럭셔리
+            </p>
+
+            <div class="pt-6 flex flex-wrap justify-center gap-4">
+                <a href="#cardnews" class="px-8 py-3.5 rounded-full bg-gradient-to-r from-gold-500 to-gold-400 text-emerald-950 font-semibold tracking-wide hover:brightness-110 transition shadow-lg gold-glow">
+                    홍보 에셋 탐색하기
+                </a>
+                <a href="#summary" class="px-8 py-3.5 rounded-full border border-gold-400/40 text-gold-300 hover:bg-gold-400/10 transition backdrop-blur-sm">
+                    기획서 개요 보기
+                </a>
+            </div>
+
+            <!-- Document Meta Info Badge -->
+            <div class="pt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto text-xs border-t border-gold-400/20 text-emerald-200/60">
+                <div class="p-3">
+                    <span class="block text-gold-400 font-semibold mb-1">문서번호</span>
+                    PR-2026-JH09
+                </div>
+                <div class="p-3">
+                    <span class="block text-gold-400 font-semibold mb-1">발행 부서</span>
+                    마케팅전략본부
+                </div>
+                <div class="p-3">
+                    <span class="block text-gold-400 font-semibold mb-1">파트너십</span>
+                    Future Dream Academy x 조선호텔
+                </div>
+                <div class="p-3">
+                    <span class="block text-gold-400 font-semibold mb-1">최초 기안일</span>
+                    2026. 09. 22
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Executive Summary Section -->
+    <section id="summary" class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="text-center space-y-3 mb-16">
+            <h2 class="font-serif text-3xl md:text-4xl font-bold gold-gradient-text">Executive Summary</h2>
+            <p class="text-emerald-200/70 max-w-xl mx-auto text-sm">추진 배경 및 핵심 솔루션 요약</p>
+            <div class="w-12 h-0.5 bg-gold-400 mx-auto mt-4"></div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+                <div class="text-gold-400 text-3xl mb-4"><i class="fa-solid fa-users-slash"></i></div>
+                <h3 class="font-serif text-xl font-bold text-white mb-3">1인 가구 1,000만 시대</h3>
+                <p class="text-sm text-emerald-100/70 leading-relaxed">
+                    2030 세대의 자발적 '솔로 럭셔리(Solo Luxury)' 소비 확산에 맞춰 조선호텔의 헤리티지를 기반으로 한 프리미엄 1인 전용 호캉스 서브 브랜드 런칭.
+                </p>
+            </div>
+
+            <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+                <div class="text-gold-400 text-3xl mb-4"><i class="fa-solid fa-sliders"></i></div>
+                <h3 class="font-serif text-xl font-bold text-white mb-3">듀얼 트랙 시스템</h3>
+                <p class="text-sm text-emerald-100/70 leading-relaxed">
+                    사적 휴식을 보장하는 <strong class="text-gold-300">Track A (Privacy)</strong>와 취향 기반의 느슨한 연대를 선사하는 <strong class="text-gold-300">Track B (Connection)</strong>의 혁신적 공존.
+                </p>
+            </div>
+
+            <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+                <div class="text-gold-400 text-3xl mb-4"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                <h3 class="font-serif text-xl font-bold text-white mb-3">JOSUN ONE'S App</h3>
+                <p class="text-sm text-emerald-100/70 leading-relaxed">
+                    예약, 동선 추천, 룸서비스 페어링까지 탐색 피로도 제로(0)를 실현하는 원스톱 AI 컨시어지 스마트 큐레이션 솔루션.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dual Track Experience Interactive Comparison -->
+    <section id="dual-track" class="py-20 px-6 bg-emerald-900/30 border-y border-gold-400/20">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center space-y-3 mb-16">
+                <span class="text-xs font-semibold tracking-widest text-gold-400 uppercase">Dual-Track Experience</span>
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-white">상반된 니즈를 충족하는 듀얼 트랙</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Track A -->
+                <div class="glass-card rounded-2xl p-8 border border-gold-400/30 relative">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="px-3 py-1 rounded-full bg-gold-400/20 text-gold-300 text-xs font-bold border border-gold-400/40">TRACK A</span>
+                        <i class="fa-solid fa-user-shield text-2xl text-gold-400"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-white mb-2">COMPLETE PRIVACY</h3>
+                    <p class="text-xs text-gold-300/80 mb-6 tracking-wide uppercase">완벽한 사적 휴식 보장</p>
+                    
+                    <ul class="space-y-3 text-sm text-emerald-100/80 mb-8">
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-check text-gold-400 text-xs"></i>
+                            <span>눈치 볼 필요 없는 1인 스위트룸 셋업</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-check text-gold-400 text-xs"></i>
+                            <span>객실 내 인룸 고메 테이스팅 디너 & 하프 보틀 샴페인</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-check text-gold-400 text-xs"></i>
+                            <span>VIP 전담 비대면 턴다운 어메니티 케어</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Track B -->
+                <div class="glass-card rounded-2xl p-8 border border-gold-400/30 relative">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="px-3 py-1 rounded-full bg-gold-400/20 text-gold-300 text-xs font-bold border border-gold-400/40">TRACK B</span>
+                        <i class="fa-solid fa-wine-glass text-2xl text-gold-400"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-white mb-2">SOFT CONNECTION</h3>
+                    <p class="text-xs text-gold-300/80 mb-6 tracking-wide uppercase">취향 기반의 느슨한 연대</p>
+
+                    <ul class="space-y-3 text-sm text-emerald-100/80 mb-8">
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-check text-gold-400 text-xs"></i>
+                            <span>어색함 없는 고품격 프라이빗 와인 테이스팅 바</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-check text-gold-400 text-xs"></i>
+                            <span>1인 투숙객 전용 취향 살롱 네트워킹</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-check text-gold-400 text-xs"></i>
+                            <span>부담 없이 즐기는 1인 소셜 라이프 큐레이션</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content 1: Instagram Card News Section -->
+    <section id="cardnews" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center space-y-3 mb-16">
+            <span class="text-xs font-semibold tracking-widest text-gold-400 uppercase">Content 01</span>
+            <h2 class="font-serif text-3xl md:text-4xl font-bold gold-gradient-text">인스타그램 카드뉴스 (4-Cut Carousel)</h2>
+            <p class="text-emerald-200/70 max-w-xl mx-auto text-sm">도발적인 후킹 카피와 트랙별 혜택 제시로 앱 유입 전환 유도 (1080x1080px)</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Card 1 -->
+            <div class="glass-card rounded-2xl p-4 transition-all duration-300 flex flex-col justify-between group">
+                <div class="space-y-3">
+                    <div class="relative overflow-hidden rounded-xl aspect-square mb-3">
+                        <img src="https://lh3.googleusercontent.com/pw/AP1GczNz9AAnzUeH_H8s3G9Xo2g2a-fT8aOaI_T4tXmYJ8Yy4Zk1G9q2A2N9fT8aOaI_T4tXmYJ8Yy4Zk1G9q2A2N9fT8a=w1000-h1000-no" 
+                             alt="Card 1 - 후킹 커버" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80';">
+                        <span class="absolute top-2 left-2 px-2.5 py-1 rounded-md bg-emerald-950/80 text-gold-300 text-xs font-bold border border-gold-400/30">Card 1</span>
+                    </div>
+                    <span class="text-xs text-gold-400 font-semibold tracking-wide">HOOKING COVER</span>
+                    <h4 class="font-serif text-base font-bold text-white leading-snug">"혼자인데, 이렇게 대접받아도 되나요?"</h4>
+                    <p class="text-xs text-emerald-200/70 leading-relaxed">오직 한 사람만을 위한 5성급 럭셔리 케어의 시작</p>
+                </div>
+                <button onclick="openModal('modal-card1')" class="mt-4 w-full py-2 rounded-lg border border-gold-400/30 text-xs text-gold-300 hover:bg-gold-400 hover:text-emerald-950 font-medium transition">
+                    상세보기
+                </button>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="glass-card rounded-2xl p-4 transition-all duration-300 flex flex-col justify-between group">
+                <div class="space-y-3">
+                    <div class="relative overflow-hidden rounded-xl aspect-square mb-3">
+                        <img src="https://lh3.googleusercontent.com/pw/AP1GczO_AAnzUeH_H8s3G9Xo2g2a-fT8aOaI_T4tXmYJ8Yy4Zk1G9q2A2N9fT8aOaI_T4tXmYJ8Yy4Zk1G9q2A2N9fT8a=w1000-h1000-no" 
+                             alt="Card 2 - Track A" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80';">
+                        <span class="absolute top-2 left-2 px-2.5 py-1 rounded-md bg-emerald-950/80 text-gold-300 text-xs font-bold border border-gold-400/30">Card 2</span>
+                    </div>
+                    <span class="text-xs text-gold-400 font-semibold tracking-wide">TRACK A</span>
+                    <h4 class="font-serif text-base font-bold text-white leading-snug">COMPLETE PRIVACY</h4>
+                    <p class="text-xs text-emerald-200/70 leading-relaxed">눈치 볼 필요 없이 완벽하게 누리는 프라이빗 디너</p>
+                </div>
+                <button onclick="openModal('modal-card2')" class="mt-4 w-full py-2 rounded-lg border border-gold-400/30 text-xs text-gold-300 hover:bg-gold-400 hover:text-emerald-950 font-medium transition">
+                    상세보기
+                </button>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="glass-card rounded-2xl p-4 transition-all duration-300 flex flex-col justify-between group">
+                <div class="space-y-3">
+                    <div class="relative overflow-hidden rounded-xl aspect-square mb-3">
+                        <img src="https://lh3.googleusercontent.com/pw/AP1GczP_AAnzUeH_H8s3G9Xo2g2a-fT8aOaI_T4tXmYJ8Yy4Zk1G9q2A2N9fT8aOaI_T4tXmYJ8Yy4Zk1G9q2A2N9fT8a=w1000-h1000-no" 
+                             alt="Card 3 - Track B" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80';">
+                        <span class="absolute top-2 left-2 px-2.5 py-1 rounded-md bg-emerald-950/80 text-gold-300 text-xs font-bold border border-gold-400/30">Card 3</span>
+                    </div>
+                    <span class="text-xs text-gold-400 font-semibold tracking-wide">TRACK B</span>
+                    <h4 class="font-serif text-base font-bold text-white leading-snug">SOFT CONNECTION</h4>
+                    <p class="text-xs text-emerald-200/70 leading-relaxed">어색한 대화 없는 고품격 취향 소셜 와인 바</p>
+                </div>
+                <button onclick="openModal('modal-card3')" class="mt-4 w-full py-2 rounded-lg border border-gold-400/30 text-xs text-gold-300 hover:bg-gold-400 hover:text-emerald-950 font-medium transition">
+                    상세보기
+                </button>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="glass-card rounded-2xl p-4 transition-all duration-300 flex flex-col justify-between group">
+                <div class="space-y-3">
+                    <div class="relative overflow-hidden rounded-xl aspect-square mb-3">
+                        <img src="https://lh3.googleusercontent.com/pw/AP1GczQ_AAnzUeH_H8s3G9Xo2g2a-fT8aOaI_T4tXmYJ8Yy4Zk1G9q2A2N9fT8aOaI_T4tXmYJ8Yy4Zk1G9q2A2N9fT8a=w1000-h1000-no" 
+                             alt="Card 4 - CTA" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1563911302283-d2bc129e7570?auto=format&fit=crop&w=800&q=80';">
+                        <span class="absolute top-2 left-2 px-2.5 py-1 rounded-md bg-emerald-950/80 text-gold-300 text-xs font-bold border border-gold-400/30">Card 4</span>
+                    </div>
+                    <span class="text-xs text-gold-400 font-semibold tracking-wide">CALL TO ACTION</span>
+                    <h4 class="font-serif text-base font-bold text-white leading-snug">"한 번 와도, 혼자 와도 우리 사람"</h4>
+                    <p class="text-xs text-emerald-200/70 leading-relaxed">JOSUN ONE'S 앱 다운로드 및 웰컴 패키지 증정</p>
+                </div>
+                <button onclick="openModal('modal-card4')" class="mt-4 w-full py-2 rounded-lg border border-gold-400/30 text-xs text-gold-300 hover:bg-gold-400 hover:text-emerald-950 font-medium transition">
+                    상세보기
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content 2: Editorial Moodboard Poster Section -->
+    <section id="poster" class="py-24 px-6 bg-emerald-950/80 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center space-y-3 mb-16">
+                <span class="text-xs font-semibold tracking-widest text-gold-400 uppercase">Content 02</span>
+                <h2 class="font-serif text-3xl md:text-4xl font-bold gold-gradient-text">메인 포스터 (Editorial Moodboard Flatlay)</h2>
+                <p class="text-emerald-200/70 max-w-xl mx-auto text-sm">매거진 에디토리얼 무드보드 기법으로 시각화한 10가지 경험 가이드</p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <!-- Main Visual Image Display -->
+                <div class="lg:col-span-7 flex justify-center">
+                    <div class="relative glass-card p-3 rounded-2xl max-w-lg shadow-2xl gold-glow">
+                        <img src="https://lh3.googleusercontent.com/pw/AP1GczR_AAnzUeH_H8s3G9Xo2g2a-fT8aOaI_T4tXmYJ8Yy4Zk1G9q2A2N9fT8aOaI_T4tXmYJ8Yy4Zk1G9q2A2N9fT8a=w1000-h1333-no" 
+                             alt="메인 포스터 - 10 Things to do alone in JOSUN HOTEL" 
+                             class="rounded-xl w-full object-cover"
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1000&q=80';">
+                    </div>
+                </div>
+
+                <!-- Poster Elements Description -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-l-gold-400">
+                        <h4 class="font-serif text-lg font-bold text-white mb-1">Top Left: WINE TASTING</h4>
+                        <p class="text-xs text-emerald-200/70">빈티지 와인 보틀과 크리스탈 와인 글라스, 테이스팅 노트로 구성된 시그니처 바 경험</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-l-gold-400">
+                        <h4 class="font-serif text-lg font-bold text-white mb-1">Top Right: LUXURY SUITE</h4>
+                        <p class="text-xs text-emerald-200/70">고요한 스위트 객실과 린넨 베딩, 에메랄드 톤 어메니티의 폴라로이드 감성</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-l-gold-400">
+                        <h4 class="font-serif text-lg font-bold text-white mb-1">Bottom Left: CURATION APP</h4>
+                        <p class="text-xs text-emerald-200/70">스마트폰 화면 속 Track A/B 추천 팝업 큐레이션 인터페이스</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-l-gold-400">
+                        <h4 class="font-serif text-lg font-bold text-white mb-1">Bottom Right: PRIVATE KEY</h4>
+                        <p class="text-xs text-emerald-200/70">조선호텔 로고 금박 각인 브라운 레더 키홀더 & 클래식 브라스 키</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content 3: Short-form Video Storyboard -->
+    <section id="shortform" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center space-y-3 mb-16">
+            <span class="text-xs font-semibold tracking-widest text-gold-400 uppercase">Content 03</span>
+            <h2 class="font-serif text-3xl md:text-4xl font-bold gold-gradient-text">숏폼 영상 스토리보드 (18-Second Vertical)</h2>
+            <p class="text-emerald-200/70 max-w-xl mx-auto text-sm">극적인 화면 반전(Split & Transition)을 통해 1인 호캉스의 해답 제시</p>
+        </div>
+
+        <div class="grid lg:grid-cols-4 gap-6">
+            <!-- Scene 1 -->
+            <div class="glass-card p-6 rounded-2xl flex flex-col justify-between border-t-2 border-t-gold-400">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs font-bold text-gold-400 tracking-wider">00 ~ 04s</span>
+                        <span class="px-2 py-0.5 rounded bg-red-950/60 text-red-300 text-[10px]">Problem</span>
+                    </div>
+                    <h4 class="font-serif text-base font-bold text-white mb-2">일상의 지침 & 눈치</h4>
+                    <p class="text-xs text-emerald-200/70 leading-relaxed mb-4">
+                        붐비는 식당 2인석 눈치, 맛집 대기열, 지친 표정의 빠른 컷 전환
+                    </p>
+                </div>
+                <div class="pt-4 border-t border-gold-400/10 text-[11px] text-gold-300/80">
+                    <p><strong>BGM:</strong> 타자 소리, 시계 초침</p>
+                    <p class="mt-1"><strong>자막:</strong> "혼자 쉬러 갔는데... 왜 더 지치는 걸까?"</p>
+                </div>
+            </div>
+
+            <!-- Scene 2 -->
+            <div class="glass-card p-6 rounded-2xl flex flex-col justify-between border-t-2 border-t-gold-400">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs font-bold text-gold-400 tracking-wider">04 ~ 09s</span>
+                        <span class="px-2 py-0.5 rounded bg-emerald-800/60 text-emerald-300 text-[10px]">Solution</span>
+                    </div>
+                    <h4 class="font-serif text-base font-bold text-white mb-2">반전 & 환대</h4>
+                    <p class="text-xs text-emerald-200/70 leading-relaxed mb-4">
+                        JOSUN ONE'S 앱 터치 한번으로 에메랄드 그린 반전 및 전담 직원 영접
+                    </p>
+                </div>
+                <div class="pt-4 border-t border-gold-400/10 text-[11px] text-gold-300/80">
+                    <p><strong>BGM:</strong> 청아한 종소리 + 재즈 피아노</p>
+                    <p class="mt-1"><strong>자막:</strong> "귀찮은 건 호텔이 다 해둘게요."</p>
+                </div>
+            </div>
+
+            <!-- Scene 3 -->
+            <div class="glass-card p-6 rounded-2xl flex flex-col justify-between border-t-2 border-t-gold-400">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs font-bold text-gold-400 tracking-wider">09 ~ 14s</span>
+                        <span class="px-2 py-0.5 rounded bg-gold-900/60 text-gold-300 text-[10px]">Delight</span>
+                    </div>
+                    <h4 class="font-serif text-base font-bold text-white mb-2">Track A & Track B</h4>
+                    <p class="text-xs text-emerald-200/70 leading-relaxed mb-4">
+                        실크 가운 스위트 침대, 1인 룸서비스 & 프라이빗 와인 살롱
+                    </p>
+                </div>
+                <div class="pt-4 border-t border-gold-400/10 text-[11px] text-gold-300/80">
+                    <p><strong>BGM:</strong> 샴페인 탄산 ASMR</p>
+                    <p class="mt-1"><strong>자막:</strong> "Track A: 프라이빗 / Track B: 취향의 연결"</p>
+                </div>
+            </div>
+
+            <!-- Scene 4 -->
+            <div class="glass-card p-6 rounded-2xl flex flex-col justify-between border-t-2 border-t-gold-400">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs font-bold text-gold-400 tracking-wider">14 ~ 18s</span>
+                        <span class="px-2 py-0.5 rounded bg-gold-500/20 text-gold-200 text-[10px]">Brand Ending</span>
+                    </div>
+                    <h4 class="font-serif text-base font-bold text-white mb-2">온전한 누림</h4>
+                    <p class="text-xs text-emerald-200/70 leading-relaxed mb-4">
+                        창밖 시티뷰, 만족스러운 미소 및 로고 디스플레이
+                    </p>
+                </div>
+                <div class="pt-4 border-t border-gold-400/10 text-[11px] text-gold-300/80">
+                    <p><strong>BGM:</strong> 재즈 피아노 코드 마무리</p>
+                    <p class="mt-1"><strong>자막:</strong> "ONCE, ONE'S - 혼자이기 때문에, 더 온전하게."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategy & Milestones & KPI Dashboard -->
+    <section id="strategy" class="py-24 px-6 bg-emerald-900/30 border-t border-gold-400/20">
+        <div class="max-w-7xl mx-auto space-y-20">
+            
+            <!-- Milestones Timeline -->
+            <div>
+                <div class="text-center space-y-3 mb-12">
+                    <h2 class="font-serif text-3xl font-bold text-white">단계별 실행 로드맵 (Milestones)</h2>
+                    <p class="text-xs text-gold-300/80">Pre-launch부터 Post-launch까지 체계적인 모니터링</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="glass-card p-6 rounded-2xl">
+                        <span class="text-xs font-bold text-gold-400 tracking-wider block mb-2">PHASE 1 (D-30 ~ D-1)</span>
+                        <h4 class="font-serif text-lg font-bold text-white mb-4">사전 티징 및 인프라 구축</h4>
+                        <ul class="space-y-2 text-xs text-emerald-200/70">
+                            <li>• App 큐레이션 알고리즘 및 UI/UX 점검</li>
+                            <li>• 호텔 1인 전담 접객 프로토콜 배포</li>
+                            <li>• 숏츠 렌더링 & 사전 세팅 완료</li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl border-gold-400/50">
+                        <span class="text-xs font-bold text-gold-400 tracking-wider block mb-2">PHASE 2 (D-DAY)</span>
+                        <h4 class="font-serif text-lg font-bold text-white mb-4">그랜드 오픈 & 캠페인 개시</h4>
+                        <ul class="space-y-2 text-xs text-emerald-200/70">
+                            <li>• 공식 브랜드 웹페이지 오픈 (10:00)</li>
+                            <li>• Meta 광고 & 카드뉴스 슬라이드 집행</li>
+                            <li>• 릴스/숏츠 18초 영상 일괄 배포</li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl">
+                        <span class="text-xs font-bold text-gold-400 tracking-wider block mb-2">PHASE 3 (D+1 ~ D+30)</span>
+                        <h4 class="font-serif text-lg font-bold text-white mb-4">성과 분석 및 리텐션 강화</h4>
+                        <ul class="space-y-2 text-xs text-emerald-200/70">
+                            <li>• 앱 설치 전환율(CVR) 일일 모니터링</li>
+                            <li>• Track A vs B 선택 비율 분석</li>
+                            <li>• 4주차 종합 성과 보고회 진행</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KPI Dashboard -->
+            <div>
+                <div class="text-center space-y-3 mb-12">
+                    <h2 class="font-serif text-3xl font-bold gold-gradient-text">핵심 성과 지표 (KPIs)</h2>
+                    <p class="text-xs text-emerald-200/70">캠페인 정량적 목표 수치</p>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                    <div class="glass-card p-6 rounded-2xl">
+                        <span class="block text-3xl font-serif font-bold text-gold-400 mb-2">5,000,000+</span>
+                        <span class="text-xs text-emerald-100 font-medium">총 노출도 (Impression)</span>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl">
+                        <span class="block text-3xl font-serif font-bold text-gold-400 mb-2">1,500,000+</span>
+                        <span class="text-xs text-emerald-100 font-medium">숏폼 영상 조회수</span>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl">
+                        <span class="block text-3xl font-serif font-bold text-gold-400 mb-2">30,000건</span>
+                        <span class="text-xs text-emerald-100 font-medium">JOSUN ONE'S 앱 다운로드</span>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl">
+                        <span class="block text-3xl font-serif font-bold text-gold-400 mb-2">3.8% / +15%p</span>
+                        <span class="text-xs text-emerald-100 font-medium">예약 전환율 & 주중 OCC 상승</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Floating Survey Button -->
+    <div class="fixed bottom-6 right-6 z-40">
+        <a href="./01/web1.html" target="_blank" rel="noopener noreferrer" 
+           class="group relative flex items-center space-x-3 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 text-emerald-950 font-bold px-5 py-3.5 rounded-full shadow-2xl hover:scale-105 transition-all duration-300 gold-glow border border-gold-300">
+            <span class="relative flex h-3 w-3">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-900 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-950"></span>
+            </span>
+            <span class="text-xs sm:text-sm tracking-wide">사전 설문조사 참여하기</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+        </a>
+    </div>
+
+    <!-- Modals for Card News Details -->
+    <!-- Modal Card 1 -->
+    <div id="modal-card1" class="modal fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none">
+        <div class="glass-card max-w-md w-full p-6 rounded-2xl space-y-4 relative">
+            <button onclick="closeModal('modal-card1')" class="absolute top-4 right-4 text-gold-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <span class="text-xs font-bold text-gold-400 uppercase">Card 1 - Hooking Cover</span>
+            <h3 class="font-serif text-xl font-bold text-white">"혼자인데, 이렇게 대접받아도 되나요?"</h3>
+            <p class="text-xs text-emerald-100/80 leading-relaxed">
+                고급 호텔 라운지 바에 홀로 앉아 샴페인을 즐기는 비주얼로 기존 2인 중심 호캉스의 틀을 깨고 1인 전용 5성급 환대 브랜드로서의 강렬한 인상을 선사합니다.
+            </p>
+        </div>
+    </div>
+
+    <!-- Modal Card 2 -->
+    <div id="modal-card2" class="modal fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none">
+        <div class="glass-card max-w-md w-full p-6 rounded-2xl space-y-4 relative">
+            <button onclick="closeModal('modal-card2')" class="absolute top-4 right-4 text-gold-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <span class="text-xs font-bold text-gold-400 uppercase">Card 2 - Track A</span>
+            <h3 class="font-serif text-xl font-bold text-white">TRACK A: COMPLETE PRIVACY</h3>
+            <p class="text-xs text-emerald-100/80 leading-relaxed">
+                타인의 눈치를 볼 필요 없이 완벽한 정적과 사적 휴식을 누리는 패키지. 객실 내 1인 고메 다이닝과 턴다운 어메니티 서비스가 포함되어 있습니다.
+            </p>
+        </div>
+    </div>
+
+    <!-- Modal Card 3 -->
+    <div id="modal-card3" class="modal fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none">
+        <div class="glass-card max-w-md w-full p-6 rounded-2xl space-y-4 relative">
+            <button onclick="closeModal('modal-card3')" class="absolute top-4 right-4 text-gold-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <span class="text-xs font-bold text-gold-400 uppercase">Card 3 - Track B</span>
+            <h3 class="font-serif text-xl font-bold text-white">TRACK B: SOFT CONNECTION</h3>
+            <p class="text-xs text-emerald-100/80 leading-relaxed">
+                독립적인 취향을 가진 투숙객들이 프라이빗 와인 테이스팅 바에서 자연스럽게 교류할 수 있는 고급스러운 소셜 살롱 프로그램입니다.
+            </p>
+        </div>
+    </div>
+
+    <!-- Modal Card 4 -->
+    <div id="modal-card4" class="modal fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none">
+        <div class="glass-card max-w-md w-full p-6 rounded-2xl space-y-4 relative">
+            <button onclick="closeModal('modal-card4')" class="absolute top-4 right-4 text-gold-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <span class="text-xs font-bold text-gold-400 uppercase">Card 4 - Call to Action</span>
+            <h3 class="font-serif text-xl font-bold text-white">"한 번 와도, 혼자 와도 우리 사람"</h3>
+            <p class="text-xs text-emerald-100/80 leading-relaxed">
+                JOSUN ONE'S 앱 설치 시 1인 전용 웰컴 패키지 즉시 증정. 탐색 피로도 없는 원스톱 큐레이션을 경험해보세요.
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-gold-400/20 text-center text-xs text-emerald-200/50 space-y-4">
+        <div class="font-serif text-sm text-gold-400">ONCE, ONE'S BY JOSUN HOTEL</div>
+        <p>© 2026 JOSUN HOTEL & RESORTS. All Rights Reserved. | Future Dream Academy Partnership</p>
+    </footer>
+
+    <!-- JavaScript Functions -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Modal Handlers
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        }
+    </script>
+</body>
+</html>
